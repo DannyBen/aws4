@@ -145,7 +145,8 @@ describe AWS4::Signer do
   end
 
   it "signs get-vanilla-utf8-query" do
-    uri = URI(URI::encode("http://host.foo.com/?ሴ=bar"))
+    query = URI.encode_www_form('ሴ' => 'bar')
+    uri = URI("http://host.foo.com/?#{query}")
     headers = {
       "Host" => "host.foo.com",
       "Date" => "Mon, 09 Sep 2011 23:36:00 GMT"
